@@ -1,0 +1,6 @@
+#!/bin/sh
+
+SOURCE_FILENAME=$(basename -- "$1")
+DEST_FILENAME="${SOURCE_FILENAME%.*}.pdf"
+
+pandoc $SOURCE_FILENAME --pdf-engine=xelatex -H style.sty -o $DEST_FILENAME

@@ -1,0 +1,88 @@
+% moderncompany.sty – Stylish internal documentation look
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{minted}
+\usepackage{sectsty}
+\usepackage{titlesec}
+\usepackage{caption}
+
+% Use a clean sans-serif font
+\setmainfont{Inter} % or try: Helvetica Neue, Fira Sans, Source Sans Pro
+
+% Page layout
+\geometry{a4paper, margin=1in}
+\setstretch{1.25}
+
+% Colors
+\definecolor{companyBlue}{HTML}{2D6CDF}
+\definecolor{darkGray}{HTML}{4B4B4B}
+\definecolor{lightGray}{HTML}{F5F7FA}
+\definecolor{codeBG}{HTML}{F0F0F0}
+
+% Section fonts
+\sectionfont{\color{companyBlue}\sffamily\bfseries\Large}
+\subsectionfont{\color{darkGray}\sffamily\bfseries\large}
+\subsubsectionfont{\color{gray}\sffamily\bfseries\normalsize}
+
+% Code block style
+\setminted{
+    bgcolor=codeBG,
+    fontsize=\small,
+    breaklines=true,
+    frame=single,
+    framesep=3mm,
+    linenos=false,
+    style=monokai,
+    autogobble
+}
+
+% Hyperlinks
+\hypersetup{
+    colorlinks=true,
+    linkcolor=companyBlue,
+    urlcolor=companyBlue,
+    citecolor=companyBlue
+}
+
+% Quote block
+\renewenvironment{quote}
+  {\begin{center}\begin{minipage}{0.9\linewidth}\color{darkGray}\sffamily\small\itshape\setlength{\parindent}{0pt}}
+  {\end{minipage}\end{center}}
+
+% Lists
+\setlist{topsep=6pt, itemsep=4pt, parsep=4pt}
+
+% Title style
+\titleformat{\title}{\sffamily\bfseries\Huge\color{companyBlue}}{}{0pt}{}
+
+% Header & footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Custom title
+\makeatletter
+\renewcommand{\maketitle}{
+  \begin{center}
+    \vspace*{2em}
+    {\Huge\sffamily\bfseries\color{companyBlue} \@title \par}
+    \vskip 1em
+    {\large\sffamily\color{darkGray} \@author \par}
+    \vskip 0.5em
+    {\small\sffamily\color{gray} \@date \par}
+    \vspace{2em}
+  \end{center}
+}
+\makeatother
